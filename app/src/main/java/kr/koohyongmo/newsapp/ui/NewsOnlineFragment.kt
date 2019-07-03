@@ -29,7 +29,7 @@ class NewsOnlineFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_news_online, container, false)
+        val view = inflater.inflate(R.layout.fragment_news_list_view, container, false)
         val newsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView1)
 
         newsAdapter = NewsAdapter(emptyList(),true)
