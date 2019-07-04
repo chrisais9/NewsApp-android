@@ -56,7 +56,7 @@ class NewsOnlineFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
 
-                RequestApiServer(query)
+                requestApiServer(query)
 
                 return false
             }
@@ -67,7 +67,7 @@ class NewsOnlineFragment : Fragment() {
         })
     }
 
-    fun RequestApiServer(query : String) {
+    fun requestApiServer(query : String) {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(NewsApiRepo.baseURL)

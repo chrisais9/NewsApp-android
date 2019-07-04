@@ -1,15 +1,15 @@
-package kr.koohyongmo.newsapp
+package kr.koohyongmo.newsapp.ui
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.webkit.WebView
 import android.widget.Toast
 import io.realm.Realm
 import io.realm.kotlin.createObject
 
 import kotlinx.android.synthetic.main.activity_news_article_view.*
+import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.realm.NewsDataModel
 
 class NewsArticleView : AppCompatActivity() {

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
-import kr.koohyongmo.newsapp.NewsArticleView
+import kr.koohyongmo.newsapp.ui.NewsArticleView
 import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.data.Article
 
