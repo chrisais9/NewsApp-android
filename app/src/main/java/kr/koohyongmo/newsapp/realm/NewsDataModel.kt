@@ -1,4 +1,4 @@
-package kr.koohyongmo.newsapp.scrapNews
+package kr.koohyongmo.newsapp.realm
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

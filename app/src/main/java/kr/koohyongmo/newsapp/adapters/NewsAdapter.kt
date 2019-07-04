@@ -1,4 +1,4 @@
-package kr.koohyongmo.newsapp
+package kr.koohyongmo.newsapp.adapters
 
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import kr.koohyongmo.newsapp.NewsArticleView
+import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.data.Article
-import kr.koohyongmo.newsapp.ui.NewsOnlineFragment
 
 class NewsAdapter(var listArticle: List<Article>, var isFromOnlineFragment: Boolean) : RecyclerView.Adapter<NewsAdapter.MyViewHolder>(){
 

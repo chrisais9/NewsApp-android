@@ -10,13 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import io.realm.Realm
 import io.realm.kotlin.where
-import kr.koohyongmo.newsapp.NewsAdapter
+import kr.koohyongmo.newsapp.adapters.NewsAdapter
 import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.data.Article
-import kr.koohyongmo.newsapp.scrapNews.NewsDataModel
-
-
-
+import kr.koohyongmo.newsapp.realm.NewsDataModel
 
 class NewsSavedFragment : Fragment() {
 
@@ -30,7 +27,7 @@ class NewsSavedFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_news_list_view, container, false)
         val newsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView1)
 
-        newsAdapter = NewsAdapter(emptyList(),false)
+        newsAdapter = NewsAdapter(emptyList(), false)
         newsRecyclerView.layoutManager = LinearLayoutManager(activity)
         newsRecyclerView.adapter = newsAdapter
 
@@ -52,9 +49,7 @@ class NewsSavedFragment : Fragment() {
 
             newsAdapter.listArticle = list
             newsAdapter.notifyDataSetChanged()
-        } else {
-            // User is not viewing the fragment,
-            // or fragment is our of the screen
+
         }
     }
 

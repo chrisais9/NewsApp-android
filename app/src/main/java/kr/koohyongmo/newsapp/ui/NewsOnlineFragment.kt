@@ -7,10 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
-import kr.koohyongmo.newsapp.NewsAdapter
-import kr.koohyongmo.newsapp.NewsRequest
+import kr.koohyongmo.newsapp.BuildConfig
+import kr.koohyongmo.newsapp.adapters.NewsAdapter
+import kr.koohyongmo.newsapp.retrofit.NewsRequest
 import kr.koohyongmo.newsapp.R
-import kr.koohyongmo.newsapp.RetrofitService
+import kr.koohyongmo.newsapp.retrofit.NewsApiRepo
 import kr.koohyongmo.newsapp.data.NewsResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NewsOnlineFragment : Fragment() {
 
 
-    private val API_KEY = "1be58c8846014db19a882c560930e71f"
+    private val API_KEY = BuildConfig.NEWS_API_KEY
 
     private lateinit var newsAdapter: NewsAdapter
 
@@ -32,7 +33,7 @@ class NewsOnlineFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_news_list_view, container, false)
         val newsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView1)
 
-        newsAdapter = NewsAdapter(emptyList(),true)
+        newsAdapter = NewsAdapter(emptyList(), true)
         newsRecyclerView.layoutManager = LinearLayoutManager(activity)
         newsRecyclerView.adapter = newsAdapter
 
@@ -54,39 +55,43 @@ class NewsOnlineFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                var retrofit = Retrofit.Builder()
-                        .baseUrl(RetrofitService.baseURL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                val apiServer = retrofit.create(RetrofitService::class.java)
-                val newsRequest = NewsRequest(query)
-                val call = apiServer.getNewsResponse(newsRequest.query,API_KEY)
-                call.enqueue(object : Callback<NewsResponse> {
 
+                RequestApiServer(query)
 
-                    override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
-                        if(response.isSuccessful) {
-                            Log.d("retro", response.body()?.totalResults.toString())
-                            //Log.d("retro", response.body()?.articles?.get(0)?.title.toString())
-
-//                            newsRecyclerView.adapter = NewsAdapter(response.body()?.articles!!)
-                            newsAdapter.listArticle = response.body()?.articles!!
-                            newsAdapter.notifyDataSetChanged()
-                        }
-                        else{
-                            Log.e("retro", response.raw().message())
-                        }
-                    }
-
-                    override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                        t.printStackTrace()
-                    }
-                })
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
+            }
+        })
+    }
+
+    fun RequestApiServer(query : String) {
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl(NewsApiRepo.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        val apiServer = retrofit.create(NewsApiRepo::class.java)
+        val newsRequest = NewsRequest(query)
+        val call = apiServer.getNewsResponse(newsRequest.query,API_KEY)
+        call.enqueue(object : Callback<NewsResponse> {
+
+
+            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                if(response.isSuccessful) {
+                    Log.d("retro", response.body()?.totalResults.toString())
+                    newsAdapter.listArticle = response.body()?.articles!!
+                    newsAdapter.notifyDataSetChanged()
+                }
+                else{
+                    Log.e("retro", response.raw().message())
+                }
+            }
+
+            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                t.printStackTrace()
             }
         })
     }

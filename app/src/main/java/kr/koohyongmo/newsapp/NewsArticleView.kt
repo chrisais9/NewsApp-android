@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
 import io.realm.Realm
 import io.realm.kotlin.createObject
-import io.realm.kotlin.where
 
 import kotlinx.android.synthetic.main.activity_news_article_view.*
-import kr.koohyongmo.newsapp.data.Article
-import kr.koohyongmo.newsapp.scrapNews.NewsDataModel
-import java.io.Serializable
+import kr.koohyongmo.newsapp.realm.NewsDataModel
 
 class NewsArticleView : AppCompatActivity() {
 
@@ -50,10 +46,8 @@ class NewsArticleView : AppCompatActivity() {
 
         articleContent.loadUrl(url)
 
-        Log.d("flag",onlineFlag)
-
-
         setSupportActionBar(toolbar)
+
         if(onlineFlag == "false") {
             fab.hide()
         }
@@ -69,9 +63,6 @@ class NewsArticleView : AppCompatActivity() {
     }
 
     private fun insertNewsToRealm(){
-
-        Log.d("ddd","ddd")
-
 
         realm.beginTransaction()
 
