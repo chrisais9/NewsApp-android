@@ -37,10 +37,12 @@
 
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">30sp</item>
     </style>
 
     <style name="ToolbarSubtitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
 </resources>

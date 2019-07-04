@@ -1,5 +1,7 @@
 package kr.koohyongmo.newsapp.ui
 
+import android.app.ActionBar
+import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +13,8 @@ import io.realm.kotlin.createObject
 import kotlinx.android.synthetic.main.activity_news_article_view.*
 import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.realm.NewsDataModel
+
+
 
 class NewsArticleView : AppCompatActivity() {
 
@@ -37,7 +41,7 @@ class NewsArticleView : AppCompatActivity() {
             onlineFlag = intent.getStringExtra("onlineflag")
 
         }
-        setTitle(title)
+
 
         articleContent = findViewById(R.id.wv_article)
         articleContent.settings.loadsImagesAutomatically = true
@@ -48,6 +52,11 @@ class NewsArticleView : AppCompatActivity() {
         articleContent.loadUrl(url)
 
         setSupportActionBar(toolbar)
+
+        supportActionBar?.subtitle = url
+        supportActionBar?.title = title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         if(onlineFlag == "false") {
             fab.hide()
@@ -61,6 +70,10 @@ class NewsArticleView : AppCompatActivity() {
                 snackbar.show()
             }
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun insertNewsToRealm(){
