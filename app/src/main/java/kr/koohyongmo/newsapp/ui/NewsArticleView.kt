@@ -37,6 +37,7 @@ class NewsArticleView : AppCompatActivity() {
             onlineFlag = intent.getStringExtra("onlineflag")
 
         }
+        setTitle(title)
 
         articleContent = findViewById(R.id.wv_article)
         articleContent.settings.loadsImagesAutomatically = true
