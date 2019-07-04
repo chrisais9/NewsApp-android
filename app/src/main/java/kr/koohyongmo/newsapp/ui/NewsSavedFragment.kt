@@ -15,6 +15,8 @@ import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.data.Article
 import kr.koohyongmo.newsapp.realm.NewsDataModel
 
+
+
 class NewsSavedFragment : Fragment() {
 
     private lateinit var newsAdapter: NewsAdapter
