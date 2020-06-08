@@ -1,9 +1,9 @@
 package kr.koohyongmo.newsapp.ui
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,7 @@ import kr.koohyongmo.newsapp.realm.NewsDataModel
 
 
 
-class NewsSavedFragment : Fragment() {
+class NewsSavedFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var newsAdapter: NewsAdapter
 
@@ -27,10 +27,10 @@ class NewsSavedFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_news_list_view, container, false)
-        val newsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView1)
+        val newsRecyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerView1)
 
         newsAdapter = NewsAdapter(emptyList(), false)
-        newsRecyclerView.layoutManager = LinearLayoutManager(activity)
+        newsRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         newsRecyclerView.adapter = newsAdapter
 
         return view

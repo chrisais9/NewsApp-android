@@ -2,12 +2,14 @@ package kr.koohyongmo.newsapp.ui
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.*
+import android.widget.ProgressBar
 import android.widget.SearchView
+import kotlinx.android.synthetic.main.activity_main.*
 import kr.koohyongmo.newsapp.BuildConfig
 import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.adapters.NewsAdapter
@@ -21,7 +23,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class NewsOnlineFragment : Fragment() {
+class NewsOnlineFragment : androidx.fragment.app.Fragment() {
 
 
     private val API_KEY = BuildConfig.NEWS_API_KEY
@@ -32,10 +34,10 @@ class NewsOnlineFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_news_list_view, container, false)
-        val newsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView1)
+        val newsRecyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recyclerView1)
 
         newsAdapter = NewsAdapter(emptyList(), true)
-        newsRecyclerView.layoutManager = LinearLayoutManager(activity)
+        newsRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         newsRecyclerView.adapter = newsAdapter
 
         initHeadline()
@@ -77,8 +79,8 @@ class NewsOnlineFragment : Fragment() {
                     }
 
                     override fun onFinish() {
+
                         requestApiServer(newText)
-                        Log.d("FINISHED", "DONE")
                     }
                 }
                 cntr!!.start()

@@ -1,7 +1,7 @@
 package kr.koohyongmo.newsapp.adapters
 
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import kr.koohyongmo.newsapp.ui.NewsArticleView
 import kr.koohyongmo.newsapp.R
 import kr.koohyongmo.newsapp.data.Article
 
-class NewsAdapter(var listArticle: List<Article>, var isFromOnlineFragment: Boolean) : RecyclerView.Adapter<NewsAdapter.MyViewHolder>(){
+class NewsAdapter(var listArticle: List<Article>, var isFromOnlineFragment: Boolean) : androidx.recyclerview.widget.RecyclerView.Adapter<NewsAdapter.MyViewHolder>(){
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val title = listArticle[position].title
@@ -47,7 +47,7 @@ class NewsAdapter(var listArticle: List<Article>, var isFromOnlineFragment: Bool
         return MyViewHolder(view)
     }
 
-    inner class MyViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MyViewHolder internal constructor(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         var newsTitle: TextView
         var newsContent: TextView
         var newsImage : ImageView

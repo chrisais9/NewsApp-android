@@ -1,13 +1,13 @@
 package kr.koohyongmo.newsapp.adapters
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import kr.koohyongmo.newsapp.ui.NewsOnlineFragment
 import kr.koohyongmo.newsapp.ui.NewsSavedFragment
 
 
-class ContentsPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm)
+class ContentsPagerAdapter(fm: androidx.fragment.app.FragmentManager): androidx.fragment.app.FragmentPagerAdapter(fm)
 {
     val PAGE_MAX_CNT = 2
 
@@ -15,7 +15,7 @@ class ContentsPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm)
         return PAGE_MAX_CNT
     }
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): androidx.fragment.app.Fragment? {
         val fragment = when(position)
         {
             1 -> NewsSavedFragment()

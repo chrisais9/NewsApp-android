@@ -1,9 +1,9 @@
 package kr.koohyongmo.newsapp
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import kr.koohyongmo.newsapp.adapters.ContentsPagerAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val pagerAdapter = ContentsPagerAdapter(supportFragmentManager)
-        val pager = findViewById<ViewPager>(R.id.container)
+        val pager = findViewById<androidx.viewpager.widget.ViewPager>(R.id.container)
         pager.adapter = pagerAdapter
 
         val tab = findViewById<TabLayout>(R.id.tab)
